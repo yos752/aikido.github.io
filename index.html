@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>窪寺師範 - 合気道達人の歩み</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', 'Meiryo', 'メイリオ', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>') repeat;
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .master-title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 0.1em;
+        }
+
+        .master-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            letter-spacing: 0.2em;
+        }
+
+        /* ナビゲーション */
+        nav {
+            background: rgba(52, 73, 94, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #e74c3c;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        /* メインコンテンツ */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+
+        .section-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #e74c3c);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        /* プロフィール画像 */
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #34495e;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            float: left;
+            margin: 0 2rem 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* 履歴タイムライン */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #3498db, #e74c3c);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            width: 45%;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #e74c3c;
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -35px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -35px;
+        }
+
+        .timeline-year {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* 動画セクション */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(231, 76, 60, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        /* 哲学・教え */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .philosophy-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .philosophy-card:hover::before {
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .philosophy-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .philosophy-text {
+            color: #666;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* フッター */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #e74c3c;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .master-title {
+                font-size: 2rem;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                float: none;
+                display: block;
+                margin: 0 auto 2rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 60px);
+                left: 60px !important;
+            }
+
+            .timeline-item::before {
+                left: -35px !important;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="master-title">窪寺麻之 師範</h1>
+                <p class="master-subtitle">合気道達人 - 大先生の教えを守り、合気道に邁進していく</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#profile">プロフィール</a></li>
+            <li><a href="#gallery">ギャラリー</a></li>
+            <li><a href="#videos">動画</a></li>
+            <li><a href="#philosophy">哲学・教え</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="profile" class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>🥋</span>
+                    師範プロフィール
+                </h2>
+            </div>
+            <div class="section-content">
+                <img src="picture/profile.JPG" alt="窪寺麻之師範" class="profile-image">
+<!--                <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=300&h=300&fit=crop&crop=face" alt="窪寺麻之師範" class="profile-image">
+-->
+                <h3>窪寺麻之（くぼでら あさゆき）</h3>
+                <p><strong>生まれ：</strong>1929年(昭和4年)</p>
+                <p><strong>出身地：</strong>東京都　中野</p>
+                
+                <p style="margin-top: 2rem; text-align: justify;">
+                    大地主の家に７人兄弟の四男として生まれ、幼少期は何不自由ない生活を送りましたが、
+                    終戦後の土地収用などで環境が激変し、窪寺家を支えるため身を粉にして働き大変苦労されました。
+                    その時期に仕事中に起きた大事故のなか奇跡的に神様に救われた不思議な体験が窪寺先生の信仰心の原点で、
+                    その後生涯に亘り数度の神様の奇跡的なご加護を体験し、更に開祖との出会いを通じ、窪寺先生独特の信仰心と融合した合気道が誕生しました。
+                </p>
+                
+                <p style="margin-top: 1rem; text-align: justify;">
+                    窪寺先生が西尾先生の紹介で本部道場に入会したのは１９５３年（昭和２８年）で合気会会員番号は２７１です。
+                    入門したとき体が弱く、体重が52キロくらいでした。入門して2日目に有川先生によって手に怪我をさせられたのですが、稽古は一日も休まれませんでした。
+                </p>
+
+               
+                <p style="margin-top: 1rem; text-align: justify;">
+                    この頃道場は強い人ばかりで激しい稽古をしていました。昔の稽古では痛めつけられて、道場から早く辞めてゆくこともありました。
+                    先輩方はこの稽古にみんな耐えていました。
+                    当時はまだ戦後の荒っぽい気風が残っており、生き抜くため国内外の体の大きい力の強い人に対して体を鍛えなければならない状況でした。
+                </p>
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    窪寺先生は大先生の技をいかに吸収するか日夜研究しました。また、強くなろうとして稽古着が破れてしまうほど稽古をしていました。
+                    道場には強い人が大勢来るので稽古は真剣そのもので、朝から晩まで稽古の連続でした。
+                    その頃二代目道主のもとで稽古に励んでいた方々は、
+                    藤平先生・大澤先生・多田先生・山口先生・有川先生・西尾先生・斎藤先生・奥村先生・大竹（菊池）先生・田中先生・大原先生・二木先生・西先生などでした。
+                </p>
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    ある日窪寺先生が道場で独りで杖の稽古をしているのを開祖が見て有川先生に「いい！あれは誰か？」と聞かれ、
+                    その後開祖が窪寺先生の実家に砂泊先生と一緒に訪ね、神前に祈りを捧げ、記念に祝詞を記してくださり、
+                    窪寺先生はそれを一生の宝として今も肌身離さず大切に持っておられます。
+                </p>
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    当時本部道場には剣道・柔道・空手・ボクシング・プロレスなどの武道家・格闘技家が大勢いたそうで、
+                    ある日自信のある剣道家の方が窪寺先生に木刀で挑戦し相手をした窪寺先生の入り身の竹刀が相手の眼の近くに当たり、
+                    その時に大先生より二度と怪我をさせることのないようにとのお言葉があり、その後様々な危うい場面や挑戦を受けても、
+                    「争わず」という開祖との約束を守ってこられました。
+                </p>
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    有川先生をへこませるつもりで窪寺先生は加藤先生と共に猛稽古をしました。　加藤先生は、体が大きく骨太で強かったそうで、
+                    いくら稽古をしても　音を上げなかった人だったそうです。　加藤先生は、後年窪寺先生が有川先生に倍返しする（怪我はさせませんでしたが）光景を眼にされました。
+                    　その後有川先生は窪寺先生と大変親しくなり、窪寺先生の家を度々訪れるようになりました。
+                </p>
+
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    窪寺先生の呼吸法は当時から有名だったので、突然の開眼に二代目道主が驚き当時の指導者の先生方にも試させたそうですが、簡単にやってのけたそうです。
+                    　藤平先生に思いっきり腕を持たれると殆どの方は動くことが困難だったようですが、窪寺先生だけはするりと抜け、入り身・転換・呼吸法ができたことを加藤先生が目撃しました。
+                </p>
+
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    加藤先生は後年、窪寺先生との稽古が一番勉強になった、とおっしゃっていつも当時を懐かしんでおられました。
+                     そして加藤先生が呼吸法を習得するのに数十年かかったが、窪寺先生は数年で習得されたと加藤先生は言っておられました。
+                </p>
+
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    窪寺先生はその後本部道場を去り、50年ぶりに杉並合気会で加藤先生にお会いしました。
+                    ５０年間道場の稽古から遠ざかっていれば再び合気道の稽古をすることは通常困難ですが、加藤先生は一番窪寺先生のことを分かっていました。
+                    加藤先生は「窪寺先生は独りで自分の稽古を続けておられる方だから絶対大丈夫、技は昔のまま変わっていない」と仰っておられました。結果はその通りでした。
+                </p>
+
+                <p style="margin-top: 1rem; text-align: justify;">
+                    加藤先生は２０１２（平成２４年）年にお亡くなりになりましたが、加藤先生が敬愛する窪寺先生が杉並合気会及び国内関連道場においても加藤先生の跡を引き受けて指導され、
+                    また海外関連道場からのビジターに対しても指導されていることを、一番喜んでおられると思います。加藤先生と窪寺先生の戦友のような、友情と信頼関係には感動させられるものがあります。
+                </p>
+
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>📸</span>
+                    フォトギャラリー
+                </h2>
+            </div>
+            <div class="section-content">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=400&h=300&fit=crop" alt="道場での稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>道場での稽古風景</h4>
+                            <p>毎週火曜・木曜・土曜日に行われる定期稽古の様子</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=300&fit=crop" alt="国際セミナー">
+                        <div class="gallery-overlay">
+                            <h4>国際セミナー</h4>
+                            <p>ヨーロッパでの合気道指導セミナーの様子</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="演武会">
+                        <div class="gallery-overlay">
+                            <h4>年次演武会</h4>
+                            <p>年に一度開催される道場の演武会での披露</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=400&h=300&fit=crop" alt="昇段審査">
+                        <div class="gallery-overlay">
+                            <h4>昇段審査</h4>
+                            <p>門下生の昇段審査を行う窪寺師範</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="videos" class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>🎥</span>
+                    指導動画
+                </h2>
+            </div>
+            <div class="section-content">
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <div style="text-align: center;">
+                            <div class="play-button"></div>
+                            <h4>合気道基本技指導動画</h4>
+                            <p>窪寺師範による四方投げの解説</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: #666;">
+                    ※実際の動画ファイルをアップロードしてご利用ください
+                </p>
+            </div>
+        </section>
+
+        <section id="philosophy" class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>💭</span>
+                    合気道哲学・教え
+                </h2>
+            </div>
+            <div class="section-content">
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">和合の精神</h4>
+                        <p class="philosophy-text">
+                            合気道は争いを求めるものではありません。相手との調和を通じて、
+                            互いに高め合う道です。技を通じて心を磨き、真の強さを身につけることが大切です。
+                        </p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">心身統一</h4>
+                        <p class="philosophy-text">
+                            心と体は一つです。精神的な集中力と身体の動きが調和したとき、
+                            真の合気道の技が生まれます。日々の稽古でこの統一を目指しましょう。
+                        </p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">継続の力</h4>
+                        <p class="philosophy-text">
+                            合気道の上達に近道はありません。毎日の地道な稽古の積み重ねこそが、
+                            技術と精神の向上をもたらします。諦めずに続けることの大切さを忘れないでください。
+                        </p>
+                    </div>
+                    <div class="philosophy-card">
+                        <h4 class="philosophy-title">感謝の心</h4>
+                        <p class="philosophy-text">
+                            稽古相手、指導者、道場、すべてに感謝の気持ちを持ちましょう。
+                            感謝の心があるからこそ、素直に学び、成長することができるのです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>窪寺合気道道場</h3>
+                    <p>〒180-0004<br>
+                    東京都武蔵野市吉祥寺本町1-1-1<br>
+                    吉祥寺ビル3F</p>
+                </div>
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <p>電話: 0422-22-1234<br>
+                    メール: info@tanaka-aikido.jp<br>
+                    <a href="#">お問い合わせフォーム</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>稽古時間</h3>
+                    <p>火曜日: 19:00-21:00<br>
+                    木曜日: 19:00-21:00<br>
+                    土曜日: 14:00-16:00</p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #4a5f7a;">
+                <p>&copy; 2025 窪寺合気道道場. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // 動画プレースホルダーのクリックイベント
+        document.querySelector('.video-placeholder').addEventListener('click', function() {
+            alert('実際の動画ファイルをここに埋め込んでください。\n例: <video controls><source src="your-video.mp4" type="video/mp4"></video>');
+        });
+
+        // ギャラリー画像のクリックイベント
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                // 実際の実装では、ライトボックスやモーダルウィンドウを開く
+                window.open(this.src, '_blank');
+            });
+        });
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
