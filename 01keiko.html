@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <title>窪寺師範 - 合気道達人の歩み</title>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="master-title">窪寺麻之 師範</h1>
+                <p class="master-subtitle">合気道達人 - 大先生の教えを守り、合気道に邁進していく</p>
+            </div>
+        </div>
+    </header>
+
+<nav>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </label>
+    <ul id="nav-menu">
+        <li><a href="index.html">ホーム</a></li>
+    </ul>
+</nav>
+
+
+    <main class="container">
+        <section id="gallery" class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>📸</span>
+                    稽古フォトギャラリー
+                </h2>
+            </div>
+            <div class="section-content">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="picture/001.JPG" alt="道稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="picture/007.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="picture/008.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="picture/01309.jpg" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="picture/01310.jpg" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                     </div>
+
+                    <div class="gallery-item">
+                    </div>
+
+                    <div class="gallery-item2">
+                        <img src="picture/015.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item2">
+                        <img src="picture/016.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item2">
+                        <img src="picture/017.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item2">
+                        <img src="picture/018.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item2">
+                        <img src="picture/019.JPG" alt="稽古風景">
+                        <div class="gallery-overlay">
+                            <h4>稽古風景</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #4a5f7a;">
+                <p>&copy; 2025 おあしす合気会. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // ギャラリー画像のクリックイベント
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                // 実際の実装では、ライトボックスやモーダルウィンドウを開く
+                window.open(this.src, '_blank');
+            });
+        });
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

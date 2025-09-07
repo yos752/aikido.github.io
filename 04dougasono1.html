@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <title>窪寺師範 - 合気道達人の歩み</title>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="master-title">窪寺麻之 師範</h1>
+                <p class="master-subtitle">合気道達人 - 大先生の教えを守り、合気道に邁進していく</p>
+            </div>
+        </div>
+    </header>
+
+<nav>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </label>
+    <ul id="nav-menu">
+        <li><a href="index.html">ホーム</a></li>
+    </ul>
+</nav>
+
+
+    <main class="container">
+        <section id="videos" class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>🎥</span>
+                    動画その１
+                </h2>
+            </div>
+            <div class="section-content">
+            	<div class="video-grid">
+                    <div class="video-card scroll-animate">
+                        <div class="video-wrapper">
+							<iframe 
+								src="https://www.youtube.com/embed/PBh04RgqkhY?si=s_JcPRqBLEPnJajX"
+								title="2016年窪寺師範広島セミナー"
+								allowfullscreen>
+							</iframe> 
+			            </div>
+		            </div>
+                    <div class="video-card scroll-animate">
+                        <div class="video-wrapper">
+							<iframe 
+								src="https://www.youtube.com/embed/k3EzXii_ZmI?si=c8s3RBgbNF6_YIDx"
+								title="201310広島演武会No1"
+								allowfullscreen>
+							</iframe> 
+			            </div>
+		            </div>
+                    <div class="video-card scroll-animate">
+                        <div class="video-wrapper">
+							<iframe 
+								src="https://www.youtube.com/embed/MPUzNMJ8_lA?si=z3AWrh9TF47W9M79"
+								title="201310広島演武会No2"
+								allowfullscreen>
+							</iframe> 
+			            </div>
+		            </div>
+                    <div class="video-card scroll-animate">
+                        <div class="video-wrapper">
+							<iframe 
+								src="https://www.youtube.com/embed/CdZDyUwNv5E?si=Z_JMoUP09SuqUoaP"
+								title="201310広島演武会No3"
+								allowfullscreen>
+							</iframe> 
+			            </div>
+		            </div>
+	            </div>
+           </div>
+
+        </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #4a5f7a;">
+                <p>&copy; 2025 おあしす合気会. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
